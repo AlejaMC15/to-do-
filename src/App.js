@@ -1,10 +1,10 @@
 import './App.css';
-import ShowSentence from './components/ShowSentence'
+import ToDo from './ToDo'
 
 function App() {
   return (
     <div className="App">
-      {ShowSentence()}
+      <ToDo />
     </div>
   );
 }
