@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 
+import InputTask from "./InputTask"
+
 const CardTask = () => {
 
     const [currentTask, setCurrentTask] = useState("");
     const [listTask, setListTask] = useState([]);
 
+    // Add current task to list task
     const saveTask = () => {
         setListTask([...listTask, currentTask]);
     }
+
+    console.log(listTask)
 
     return (
         <>
@@ -23,6 +28,11 @@ const CardTask = () => {
                             aria-describedby="basic-addon2"
                         />
                     </div>
+                    {listTask.length > 0 && listTask.map((item) => {
+                        return (
+                            <InputTask item={item} />
+                        )
+                    })}
                     <div className="col justify-content-center">
                         <button onClick={saveTask} type="button" className="btn btn-info">
                             Save

@@ -1,9 +1,9 @@
 import React from "react";
 
-const InputTask = () => {
+const InputTask = ({ item }) => {
     return (
         <>
-            <div className="container">
+            {item && <div className="container">
                 <div className="row">
                     <div className="col">
                         <div
@@ -25,7 +25,7 @@ const InputTask = () => {
                     </div>
                     <div className="col">
                         <ul className="list-group">
-                            <li className="list-group-item">Task</li>
+                            <li className="list-group-item">{item}</li>
                         </ul>
                     </div>
                     <div className="col">
@@ -43,7 +43,7 @@ const InputTask = () => {
                         </button>
                     </div>
                 </div>
-            </div>
+            </div>}
         </>
     );
 };

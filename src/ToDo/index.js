@@ -6,8 +6,8 @@ import InputTask from './components/InputTask';
 const ToDo = () => {
     return (
         <>
-            <CardTask />
             <Search />
+            <CardTask />
             <InputTask />
         </>
     )
