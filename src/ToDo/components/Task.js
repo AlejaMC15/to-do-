@@ -1,6 +1,6 @@
 import React from "react";
 
-const Task = ({ saveTask, setCurrentTask, currentTask, listTask }) => {
+const Task = ({ saveTask, setCurrentTask, currentTask }) => {
     return (
         <>
             <div className="container">

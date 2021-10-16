@@ -9,8 +9,8 @@ import './index.css';
 const ToDo = () => {
     const [currentTask, setCurrentTask] = useState("");
     const [listTask, setListTask] = useState([]);
-    const [currentTaskEdit, setCurrentTaskEdit] = useState(false);
     const [selectEditBtn, setSelectEditBtn] = useState(false);
+    const [currentTaskEdit, setCurrentTaskEdit] = useState("");
 
     // Add current task to list task
     const saveTask = () => {
@@ -18,7 +18,7 @@ const ToDo = () => {
         setCurrentTask("");
     };
 
-    // Remove task
+    // Remove the task
     const removeTask = (index) => {
         const newList = [
             ...listTask.slice(0, index),
@@ -28,6 +28,13 @@ const ToDo = () => {
     };
 
     // Edit the task
+    const editTask = (currentTaskEdit, index) => {
+        const newEdit = [...listTask]
+        newEdit[index] = currentTaskEdit
+        setListTask(newEdit);
+        setSelectEditBtn(false)
+        setCurrentTaskEdit("")
+    }
 
     return (
         <>
@@ -39,19 +46,25 @@ const ToDo = () => {
                     listTask={listTask}
                 />
             </div>
-            <Search />
-            {listTask.length > 0 &&
-                listTask.map((item, index) => {
-                    return (
-                        <TaskList
-                            item={item}
-                            listTask={listTask}
-                            removeTask={() => removeTask(index)}
-                            handleSelectBtn={() => setSelectEditBtn(true)}
-                            selectEditBtn={selectEditBtn}
-                        />
-                    );
-                })}
+            <div className="content-principal">
+                <Search />
+                {(listTask.length > 0) ?
+                    listTask.map((item, index) => {
+                        return (
+                            <TaskList
+                                item={item}
+                                index={index}
+                                listTask={listTask}
+                                removeTask={() => removeTask(index)}
+                                handleSelectBtn={() => setSelectEditBtn(true)}
+                                selectEditBtn={selectEditBtn}
+                                editTask={editTask}
+                                currentTaskEdit={currentTaskEdit}
+                                setCurrentTaskEdit={setCurrentTaskEdit}
+                            />
+                        );
+                    }) : null}
+            </div>
         </>
     );
 };

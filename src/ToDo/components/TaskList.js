@@ -2,10 +2,13 @@ import React from "react";
 
 const TaskList = ({
     item,
-    currentTask,
+    index,
     removeTask,
     handleSelectBtn,
-    selectEditBtn
+    selectEditBtn,
+    editTask,
+    setCurrentTaskEdit,
+    currentTaskEdit,
 }) => {
     return (
         <>
@@ -18,13 +21,27 @@ const TaskList = ({
                                     <li className="list-group-item">{item}</li>
                                 </ul>
                             ) : (
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder={currentTask}
-                                    aria-label={currentTask}
-                                    value={currentTask}
-                                />
+                                <div className="row">
+                                    <div className="col">
+                                        <input
+                                            onChange={(e) => setCurrentTaskEdit(e.target.value)}
+                                            type="text"
+                                            className="form-control"
+                                            placeholder={item}
+                                            aria-label={item}
+                                            value={currentTaskEdit || item}
+                                        />
+                                    </div>
+                                    <div className="col">
+                                        <button
+                                            onClick={() => editTask(currentTaskEdit, index)}
+                                            type="button"
+                                            className="btn btn-info"
+                                        >
+                                            Save
+                                        </button>
+                                    </div>
+                                </div>
                             )}
                         </div>
                         <div className="col">

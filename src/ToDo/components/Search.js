@@ -1,6 +1,7 @@
 import React from "react";
 
 const Search = () => {
+
     return (
         <>
             <div className="container">
@@ -23,7 +24,6 @@ const Search = () => {
                             className="form-control"
                             placeholder="Search"
                             aria-label="Search"
-                            aria-describedby="basic-addon2"
                         />
                     </div>
                 </div>
