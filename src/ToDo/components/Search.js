@@ -21,8 +21,8 @@ const Search = () => {
                         <input
                             type="text"
                             className="form-control"
-                            placeholder="Add the description here..."
-                            aria-label="Add the description here..."
+                            placeholder="Search"
+                            aria-label="Search"
                             aria-describedby="basic-addon2"
                         />
                     </div>
