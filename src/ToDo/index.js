@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Task from "./components/Task";
 import Search from "./components/Search";
 import TaskList from "./components/TaskList";
+import Modal from "./components/Modal";
 
 import "./index.css";
 
@@ -12,6 +13,7 @@ const ToDo = () => {
     const [currentTaskEdit, setCurrentTaskEdit] = useState("");
     const [isSearching, setIsSearching] = useState(false);
     const [searchResult, setSearchResult] = useState([])
+    const [getText, setGetText] = useState([])
 
     // Add current task to list task
     const saveTask = () => {
@@ -44,6 +46,15 @@ const ToDo = () => {
         setIsSearching(true)
     };
 
+    const saveText = (number) => {
+        debugger
+        fetch(`https://catfact.ninja/facts?limit=${number}&max_length=1000`)
+            .then((response) => response.json())
+            .then((data) => {
+                return setGetText(data)
+            });
+    }
+
     return (
         <>
             <div className="content-principal">
@@ -54,6 +65,7 @@ const ToDo = () => {
                     listTask={listTask}
                 />
             </div>
+            <Modal handleText={saveText} />
             <div className="content-principal">
                 <Search
                     handleSearchText={(e) => {
@@ -81,6 +93,22 @@ const ToDo = () => {
                         return (
                             <TaskList
                                 item={item}
+                                index={index}
+                                removeTask={() => removeTask(index)}
+                                handleSelectBtn={() => setSelectEditBtn(true)}
+                                selectEditBtn={selectEditBtn}
+                                editTask={editTask}
+                                currentTaskEdit={currentTaskEdit}
+                                setCurrentTaskEdit={setCurrentTaskEdit}
+                            />
+                        );
+                    })
+                }
+                {getText?.data?.length > 0 && !isSearching
+                    && getText?.data?.map((item, index) => {
+                        return (
+                            <TaskList
+                                item={item.fact}
                                 index={index}
                                 removeTask={() => removeTask(index)}
                                 handleSelectBtn={() => setSelectEditBtn(true)}
