@@ -3,14 +3,15 @@ import Task from "./components/Task";
 import Search from "./components/Search";
 import TaskList from "./components/TaskList";
 
-import './index.css';
-
+import "./index.css";
 
 const ToDo = () => {
     const [currentTask, setCurrentTask] = useState("");
     const [listTask, setListTask] = useState([]);
     const [selectEditBtn, setSelectEditBtn] = useState(false);
     const [currentTaskEdit, setCurrentTaskEdit] = useState("");
+    const [isSearching, setIsSearching] = useState(false);
+    const [searchResult, setSearchResult] = useState([])
 
     // Add current task to list task
     const saveTask = () => {
@@ -29,12 +30,19 @@ const ToDo = () => {
 
     // Edit the task
     const editTask = (currentTaskEdit, index) => {
-        const newEdit = [...listTask]
-        newEdit[index] = currentTaskEdit
+        const newEdit = [...listTask];
+        newEdit[index] = currentTaskEdit;
         setListTask(newEdit);
-        setSelectEditBtn(false)
-        setCurrentTaskEdit("")
-    }
+        setSelectEditBtn(false);
+        setCurrentTaskEdit("");
+    };
+
+    //Search
+    const searchTask = (e) => {
+        const task = listTask.filter((text) => text.toLowerCase().includes(e.toLowerCase()))
+        setSearchResult(task)
+        setIsSearching(true)
+    };
 
     return (
         <>
@@ -47,14 +55,17 @@ const ToDo = () => {
                 />
             </div>
             <div className="content-principal">
-                <Search />
-                {(listTask.length > 0) ?
-                    listTask.map((item, index) => {
+                <Search
+                    handleSearchText={(e) => {
+                        searchTask(e);
+                    }}
+                />
+                {listTask.length > 0 && !isSearching
+                    && listTask.map((item, index) => {
                         return (
                             <TaskList
                                 item={item}
                                 index={index}
-                                listTask={listTask}
                                 removeTask={() => removeTask(index)}
                                 handleSelectBtn={() => setSelectEditBtn(true)}
                                 selectEditBtn={selectEditBtn}
@@ -63,7 +74,24 @@ const ToDo = () => {
                                 setCurrentTaskEdit={setCurrentTaskEdit}
                             />
                         );
-                    }) : null}
+                    })
+                }
+                {searchResult.length > 0 && isSearching
+                    && searchResult.map((item, index) => {
+                        return (
+                            <TaskList
+                                item={item}
+                                index={index}
+                                removeTask={() => removeTask(index)}
+                                handleSelectBtn={() => setSelectEditBtn(true)}
+                                selectEditBtn={selectEditBtn}
+                                editTask={editTask}
+                                currentTaskEdit={currentTaskEdit}
+                                setCurrentTaskEdit={setCurrentTaskEdit}
+                            />
+                        );
+                    })
+                }
             </div>
         </>
     );

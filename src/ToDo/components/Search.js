@@ -1,7 +1,6 @@
 import React from "react";
 
-const Search = () => {
-
+const Search = ({ handleSearchText }) => {
     return (
         <>
             <div className="container">
@@ -20,6 +19,7 @@ const Search = () => {
                             </svg>
                         </span>
                         <input
+                            onChange={(e) => handleSearchText(e.target.value)}
                             type="text"
                             className="form-control"
                             placeholder="Search"
