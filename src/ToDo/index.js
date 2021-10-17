@@ -32,6 +32,7 @@ const ToDo = () => {
 
     // Edit the task
     const editTask = (currentTaskEdit, index) => {
+        debugger
         const newEdit = [...listTask];
         newEdit[index] = currentTaskEdit;
         setListTask(newEdit);
@@ -47,7 +48,6 @@ const ToDo = () => {
     };
 
     const saveText = (number) => {
-        debugger
         fetch(`https://catfact.ninja/facts?limit=${number}&max_length=1000`)
             .then((response) => response.json())
             .then((data) => {
@@ -57,7 +57,7 @@ const ToDo = () => {
 
     return (
         <>
-            <div className="content-principal">
+            <div className="rounded content-principal">
                 <Task
                     saveTask={saveTask}
                     setCurrentTask={setCurrentTask}
@@ -66,7 +66,7 @@ const ToDo = () => {
                 />
             </div>
             <Modal handleText={saveText} />
-            <div className="content-principal">
+            <div className="rounded content-principal">
                 <Search
                     handleSearchText={(e) => {
                         searchTask(e);

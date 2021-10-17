@@ -4,7 +4,7 @@ const Modal = ({ handleText }) => {
 
     return (
         <>
-            <button type="button" className="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <button type="button" className="btn btn-light border border-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Fill with random cat phrases
             </button>
 
@@ -26,7 +26,6 @@ const Modal = ({ handleText }) => {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>

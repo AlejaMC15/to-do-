@@ -14,7 +14,7 @@ const TaskList = ({
         <>
             {item && (
                 <div className="container">
-                    <div className="row">
+                    <div className="row bg-light align-items-center mb-2 p-2 rounded">
                         <div className="col">
                             {!selectEditBtn ? (
                                 <ul className="list-group">
@@ -44,14 +44,12 @@ const TaskList = ({
                                 </div>
                             )}
                         </div>
-                        <div className="col">
+                        <div className="col-sm-1">
                             <div
-                                className="btn-group"
-                                role="group"
-                                aria-label="Basic checkbox toggle button group"
+                                class="btn-group" role="group" aria-label="Basic checkbox toggle button group"
                             >
-                                <input type="checkbox" className="btn-check" id="btncheck1" />
-                                <label className="btn btn-outline-primary">
+                                <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" />
+                                <label class="btn btn-outline-info" for="btncheck1">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="16"
@@ -65,8 +63,8 @@ const TaskList = ({
                                 </label>
                             </div>
                         </div>
-                        <div className="col">
-                            <button onClick={handleSelectBtn}>
+                        <div className="col-sm-1">
+                            <button className="btn border border-info" onClick={handleSelectBtn}>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="16"
@@ -79,8 +77,8 @@ const TaskList = ({
                                 </svg>
                             </button>
                         </div>
-                        <div className="col">
-                            <button onClick={removeTask}>
+                        <div className="col-sm-1">
+                            <button className="btn border border-info" onClick={removeTask}>
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="16"
