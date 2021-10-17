@@ -32,7 +32,6 @@ const ToDo = () => {
 
     // Edit the task
     const editTask = (currentTaskEdit, index) => {
-        debugger
         const newEdit = [...listTask];
         newEdit[index] = currentTaskEdit;
         setListTask(newEdit);
